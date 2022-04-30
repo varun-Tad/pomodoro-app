@@ -78,7 +78,8 @@ const Taskpage = () => {
             <button
               type="submit"
               onClick={() => {
-                if (title === "") {
+                if (title.length === 0) {
+                  console.log(title.length);
                   console.log("enter text");
                 } else {
                   TaskHandler();
@@ -88,6 +89,7 @@ const Taskpage = () => {
                     desc: description,
                   });
                 }
+                setTitle("");
               }}
             >
               Add Task
