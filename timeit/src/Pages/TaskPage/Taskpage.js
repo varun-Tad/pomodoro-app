@@ -97,7 +97,7 @@ const Taskpage = () => {
           </div>
         </form>
       )}
-      {isModal || isModal}
+      {/* {isModal || isModal} */}
     </div>
   );
 };

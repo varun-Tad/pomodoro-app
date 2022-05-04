@@ -10,7 +10,6 @@ const Homepage = () => {
   };
 
   const clickHandler = () => {
-    console.log(enteredName);
     localStorage.setItem("user-name", enteredName);
   };
 
