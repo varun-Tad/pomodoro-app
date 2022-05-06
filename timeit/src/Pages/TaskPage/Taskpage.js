@@ -1,4 +1,5 @@
 import { useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Taskpage.css";
 
 const reducerFn = (state, action) => {
@@ -21,6 +22,12 @@ const reducerFn = (state, action) => {
       return {
         ...state,
         tasks: [...arr],
+      };
+    }
+    case "Timer": {
+      return {
+        ...state,
+        tasks: [...state.tasks],
       };
     }
   }
@@ -58,7 +65,16 @@ const Taskpage = () => {
           <div key={ele.taskName} className="task-details">
             <p>{ele.taskName}</p>
             <div className="task-buttons">
-              <button>Timer</button>
+              <button
+                onClick={() => {
+                  console.log(ele);
+                  dispatch({ type: "Timer", value: ele });
+                }}
+              >
+                <Link className="timer-text" to="/Timerpage">
+                  Timer
+                </Link>
+              </button>
               <button>Edit</button>
               <button
                 onClick={() => dispatch({ type: "DeleteTask", value: ele })}

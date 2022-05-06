@@ -175,6 +175,13 @@
   box-shadow: 0 9px #999;
 }
 
+.timer-text {
+  text-decoration: none;
+  color: #00d4ff;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 700;
+}
+
 ::placeholder {
   font-family: "Varela Round", sans-serif;
 }
