@@ -6,7 +6,10 @@ const Timerpage = () => {
       <nav className="navbar">
         <p className="nav-brand">Time It.</p>
       </nav>
-      <section className="timer-section"></section>
+      <section className="timer-section">
+        <div className="timer"></div>
+        <div className="task-details"></div>
+      </section>
     </div>
   );
 };
