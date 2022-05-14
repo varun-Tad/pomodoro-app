@@ -18,3 +18,57 @@
   display: flex;
   flex-direction: column;
 }
+
+.main-content {
+  position: relative;
+  left: 25rem;
+  top: 10rem;
+  /* background-color: white; */
+  width: 40rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding-bottom: 3rem;
+}
+
+.timeCount {
+  font-size: 10em;
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons button {
+  color: #00d4ff;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 700;
+  height: 50px;
+  width: 100px;
+  border: 5px solid #00d4ff;
+  background-color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 9px #999;
+  outline: none;
+}
+
+.buttons button:active {
+  transform: translateY(4px);
+  box-shadow: 0 5px #666;
+}
+
+.taskToComplete {
+  margin-top: 3rem;
+  font-size: 2em;
+}
+
+.taskToCompleteHead {
+  color: #00d4ff;
+  color: white;
+}
