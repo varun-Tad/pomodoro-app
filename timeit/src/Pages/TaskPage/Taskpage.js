@@ -14,14 +14,29 @@ const reducerFn = (state, action) => {
       };
     }
     case "DeleteTask": {
-      console.log(action.value);
       const arr = state.tasks.filter(
         (item) => item.taskName !== action.value.taskName
       );
-      console.log("arr", arr);
+
       return {
         ...state,
         tasks: [...arr],
+      };
+    }
+    case "editTask": {
+      console.log("Task to be edited:", action.editTaskValue.taskName);
+      console.log("Replacement text", action.value, action.desc);
+
+      const newTask = state.tasks.map((obj) =>
+        obj.taskName === action.editTaskValue.taskName
+          ? { ...obj, taskName: action.value, taskDesc: action.desc }
+          : obj
+      );
+      console.log("newTask", newTask);
+
+      return {
+        ...state,
+        tasks: [...newTask],
       };
     }
     case "Timer": {
@@ -36,26 +51,39 @@ const reducerFn = (state, action) => {
 };
 
 const Taskpage = () => {
-  const [isModal, setIsModal] = useState(false);
+  const [isModalOne, setisModalOne] = useState(false);
+  const [isModalTwo, setisModalTwo] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [taskToEdit, setTaskToEdit] = useState({});
   const [theTasks, setTheTasks] = useState([]);
 
   const [state, dispatch] = useReducer(reducerFn, {
     tasks: [],
   });
-  const TaskHandler = () => {
-    setIsModal(!isModal);
+  const TaskHandlerOne = () => {
+    setisModalOne(!isModalOne);
   };
   const userName = localStorage.getItem("user-name");
 
-  // useEffect(() => {
-  //   setTheTasks(state.tasks);
-  // });
+  const TaskHandlerTwo = () => {
+    setisModalTwo(!isModalTwo);
+  };
 
   // useEffect(() => {
-  //   localStorage.setItem("things", JSON.stringify(theTasks.taskName));
+  //   setTheTasks(state.tasks);
+  // }, [isModalOne, isModalTwo]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("things", JSON.stringify(theTasks));
+  //   things = localStorage.getItem("things");
+  //   console.log(things);
   // }, [theTasks]);
+
+  const addTimerTask = (ele) => {
+    localStorage.setItem("TaskToSetTimer", ele.taskName);
+    dispatch({ type: "Timer", value: ele });
+  };
 
   return (
     <div className="background">
@@ -69,7 +97,7 @@ const Taskpage = () => {
       <section className="task-section">
         <div className="task-section-header">
           <h3 className="task-heading">Tasks in hand</h3>
-          <button disabled={isModal} onClick={TaskHandler}>
+          <button disabled={isModalOne} onClick={TaskHandlerOne}>
             Add Task
           </button>
         </div>
@@ -77,18 +105,23 @@ const Taskpage = () => {
           <div key={ele.taskName} className="task-details">
             <p>{ele.taskName}</p>
             <div className="task-buttons">
-              <button
-                onClick={() => {
-                  console.log(ele);
-                  localStorage.setItem("TaskToSetTimer", ele.taskName);
-                  dispatch({ type: "Timer", value: ele });
-                }}
-              >
+              <button onClick={() => addTimerTask(ele)}>
                 <Link className="timer-text" to="/Timerpage">
                   Timer
                 </Link>
               </button>
-              <button>Edit</button>
+              <button
+                disabled={isModalTwo}
+                onClick={() => {
+                  TaskHandlerTwo();
+                  setTaskToEdit({
+                    taskName: ele.taskName,
+                    taskDesc: ele.taskDesc,
+                  });
+                }}
+              >
+                Edit
+              </button>
               <button
                 onClick={() => dispatch({ type: "DeleteTask", value: ele })}
               >
@@ -99,7 +132,7 @@ const Taskpage = () => {
         ))}
       </section>
 
-      {isModal && (
+      {isModalOne && (
         <form className="form">
           <p className="modal-heading">Add Task :)</p>
           <input
@@ -118,15 +151,14 @@ const Taskpage = () => {
             required
           ></textarea>
           <div className="buttons">
-            <button onClick={TaskHandler}>Cancel</button>
+            <button onClick={TaskHandlerOne}>Cancel</button>
             <button
               type="submit"
               onClick={() => {
                 if (title.length === 0) {
-                  console.log(title.length);
-                  console.log("enter text");
+                  alert("No Task Found.Enter Task");
                 } else {
-                  TaskHandler();
+                  TaskHandlerOne();
                   dispatch({
                     type: "addToTask",
                     value: title,
@@ -142,6 +174,50 @@ const Taskpage = () => {
         </form>
       )}
       {/* {isModal || isModal} */}
+
+      {isModalTwo && (
+        <form className="form">
+          <p className="modal-heading">Edit Task :)</p>
+          <input
+            onChange={(e) => setTitle(e.target.value)}
+            className="modal-input"
+            type="text"
+            placeholder="Enter Title"
+            required
+          />
+          <textarea
+            className="modal-textArea"
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter description"
+            rows="10"
+            cols="40"
+            required
+          ></textarea>
+          <div className="buttons">
+            <button onClick={TaskHandlerTwo}>Cancel</button>
+            <button
+              type="submit"
+              onClick={() => {
+                console.log(title);
+                if (title.length === 0) {
+                  alert("No Task Found.Enter Task");
+                } else {
+                  TaskHandlerTwo();
+                  dispatch({
+                    type: "editTask",
+                    value: title,
+                    desc: description,
+                    editTaskValue: taskToEdit,
+                  });
+                }
+                setTitle("");
+              }}
+            >
+              Edit Task
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };

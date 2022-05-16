@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./BreakTimerPage.css";
 
-import "./Timerpage.css";
-
-export const Timerpage = () => {
+const BreakTimerPage = () => {
   const navigate = useNavigate();
-  const [minute, setMinute] = useState("25");
+  const [minute, setMinute] = useState("05");
   const [second, setSecond] = useState("00");
   const [isActive, setIsActive] = useState(false);
-  const [totalSeconds, setTotalSeconds] = useState(1500);
+  const [totalSeconds, setTotalSeconds] = useState(300);
 
   useEffect(() => {
     let intervalId;
@@ -31,7 +30,7 @@ export const Timerpage = () => {
         setTotalSeconds((totalSeconds) => totalSeconds - 1);
         if (totalSeconds === 0) {
           stopTimer();
-          navigate("/BreakTimerPage");
+          navigate("/Timerpage");
         }
       }, 1000);
     }
@@ -44,9 +43,9 @@ export const Timerpage = () => {
 
   const stopTimer = () => {
     setIsActive(false);
-    setTotalSeconds(1500);
+    setTotalSeconds(300);
     setSecond("00");
-    setMinute("25");
+    setMinute("05");
   };
 
   return (
@@ -54,6 +53,7 @@ export const Timerpage = () => {
       <nav className="navbar">
         <p className="nav-brand">Time It.</p>
       </nav>
+      <div className="heading-div">Time for a breather !</div>
       <section className="main-content">
         <div className="timer">
           <div className="timeCount">
@@ -71,16 +71,9 @@ export const Timerpage = () => {
             </button>
           </div>
         </div>
-
-        <div className="taskToComplete">
-          <span>Task to Complete: </span>
-          <span className="taskToCompleteHead">
-            {localStorage.getItem("TaskToSetTimer")}
-          </span>
-        </div>
       </section>
     </div>
   );
 };
 
-export default Timerpage;
+export default BreakTimerPage;
