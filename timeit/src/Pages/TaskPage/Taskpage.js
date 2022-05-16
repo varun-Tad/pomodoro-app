@@ -1,16 +1,37 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Taskpage.css";
 
 const reducerFn = (state, action) => {
   switch (action.type) {
     case "addToTask": {
-      console.log(state);
       return {
         ...state,
-        tasks: [...state.tasks, action.value],
-        Desc: [...state.Desc, action.desc],
+        tasks: [
+          ...state.tasks,
+          { taskName: action.value, taskDesc: action.desc },
+        ],
       };
     }
+    case "DeleteTask": {
+      console.log(action.value);
+      const arr = state.tasks.filter(
+        (item) => item.taskName !== action.value.taskName
+      );
+      console.log("arr", arr);
+      return {
+        ...state,
+        tasks: [...arr],
+      };
+    }
+    case "Timer": {
+      return {
+        ...state,
+        tasks: [...state.tasks],
+      };
+    }
+    default:
+      return state;
   }
 };
 
@@ -18,15 +39,24 @@ const Taskpage = () => {
   const [isModal, setIsModal] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [theTasks, setTheTasks] = useState([]);
 
   const [state, dispatch] = useReducer(reducerFn, {
     tasks: [],
-    Desc: [],
   });
   const TaskHandler = () => {
     setIsModal(!isModal);
   };
   const userName = localStorage.getItem("user-name");
+
+  // useEffect(() => {
+  //   setTheTasks(state.tasks);
+  // });
+
+  // useEffect(() => {
+  //   localStorage.setItem("things", JSON.stringify(theTasks.taskName));
+  // }, [theTasks]);
+
   return (
     <div className="background">
       <nav className="navbar">
@@ -44,12 +74,26 @@ const Taskpage = () => {
           </button>
         </div>
         {state.tasks.map((ele) => (
-          <div key={ele} className="task-details">
-            <p>{ele}</p>
+          <div key={ele.taskName} className="task-details">
+            <p>{ele.taskName}</p>
             <div className="task-buttons">
-              <button>Timer</button>
+              <button
+                onClick={() => {
+                  console.log(ele);
+                  localStorage.setItem("TaskToSetTimer", ele.taskName);
+                  dispatch({ type: "Timer", value: ele });
+                }}
+              >
+                <Link className="timer-text" to="/Timerpage">
+                  Timer
+                </Link>
+              </button>
               <button>Edit</button>
-              <button>Delete</button>
+              <button
+                onClick={() => dispatch({ type: "DeleteTask", value: ele })}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
