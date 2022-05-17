@@ -56,7 +56,9 @@ const Taskpage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [taskToEdit, setTaskToEdit] = useState({});
-  const [theTasks, setTheTasks] = useState([]);
+  const [theTasks, setTheTasks] = useState();
+
+  const [things, setThings] = useState([]);
 
   const [state, dispatch] = useReducer(reducerFn, {
     tasks: [],
@@ -70,20 +72,30 @@ const Taskpage = () => {
     setisModalTwo(!isModalTwo);
   };
 
-  // useEffect(() => {
-  //   setTheTasks(state.tasks);
-  // }, [isModalOne, isModalTwo]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("things", JSON.stringify(theTasks));
-  //   things = localStorage.getItem("things");
-  //   console.log(things);
-  // }, [theTasks]);
+  // const addTaskToLocal = () => {
+  //   localStorage.setItem("theTasks", JSON.stringify(theTasks));
+  // };
 
   const addTimerTask = (ele) => {
     localStorage.setItem("TaskToSetTimer", ele.taskName);
     dispatch({ type: "Timer", value: ele });
   };
+
+  useEffect(() => {
+    setTheTasks(state.tasks);
+  });
+
+  useEffect(() => {
+    if (state.tasks) {
+      localStorage.setItem("theTasks", JSON.stringify(state.tasks || []));
+    }
+  });
+
+  useEffect(() => {
+    const things = JSON.parse(localStorage.getItem("theTasks")) || [];
+    console.log(things);
+    setThings(things);
+  }, [theTasks]);
 
   return (
     <div className="background">
@@ -101,7 +113,7 @@ const Taskpage = () => {
             Add Task
           </button>
         </div>
-        {state.tasks.map((ele) => (
+        {things.map((ele) => (
           <div key={ele.taskName} className="task-details">
             <p>{ele.taskName}</p>
             <div className="task-buttons">
@@ -155,6 +167,7 @@ const Taskpage = () => {
             <button
               type="submit"
               onClick={() => {
+                // addTaskToLocal();
                 if (title.length === 0) {
                   alert("No Task Found.Enter Task");
                 } else {
