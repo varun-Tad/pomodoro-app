@@ -5,38 +5,38 @@ import "./Taskpage.css";
 const reducerFn = (state, action) => {
   switch (action.type) {
     case "addToTask": {
+      const items = [
+        ...state.tasks,
+        { taskName: action.value, taskDesc: action.desc },
+      ];
+      localStorage.setItem("theItems", JSON.stringify(items));
       return {
         ...state,
-        tasks: [
-          ...state.tasks,
-          { taskName: action.value, taskDesc: action.desc },
-        ],
+        tasks: [...items],
       };
     }
     case "DeleteTask": {
       const arr = state.tasks.filter(
         (item) => item.taskName !== action.value.taskName
       );
-
+      const items = [...arr];
+      localStorage.setItem("theItems", JSON.stringify(items));
       return {
         ...state,
-        tasks: [...arr],
+        tasks: [...items],
       };
     }
     case "editTask": {
-      console.log("Task to be edited:", action.editTaskValue.taskName);
-      console.log("Replacement text", action.value, action.desc);
-
       const newTask = state.tasks.map((obj) =>
         obj.taskName === action.editTaskValue.taskName
           ? { ...obj, taskName: action.value, taskDesc: action.desc }
           : obj
       );
-      console.log("newTask", newTask);
-
+      const items = [...newTask];
+      localStorage.setItem("theItems", JSON.stringify(items));
       return {
         ...state,
-        tasks: [...newTask],
+        tasks: [...items],
       };
     }
     case "Timer": {
@@ -56,12 +56,9 @@ const Taskpage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [taskToEdit, setTaskToEdit] = useState({});
-  const [theTasks, setTheTasks] = useState();
-
-  const [things, setThings] = useState([]);
 
   const [state, dispatch] = useReducer(reducerFn, {
-    tasks: [],
+    tasks: JSON.parse(localStorage.getItem("theItems")),
   });
   const TaskHandlerOne = () => {
     setisModalOne(!isModalOne);
@@ -72,30 +69,10 @@ const Taskpage = () => {
     setisModalTwo(!isModalTwo);
   };
 
-  // const addTaskToLocal = () => {
-  //   localStorage.setItem("theTasks", JSON.stringify(theTasks));
-  // };
-
   const addTimerTask = (ele) => {
     localStorage.setItem("TaskToSetTimer", ele.taskName);
     dispatch({ type: "Timer", value: ele });
   };
-
-  useEffect(() => {
-    setTheTasks(state.tasks);
-  });
-
-  useEffect(() => {
-    if (state.tasks) {
-      localStorage.setItem("theTasks", JSON.stringify(state.tasks || []));
-    }
-  });
-
-  useEffect(() => {
-    const things = JSON.parse(localStorage.getItem("theTasks")) || [];
-    console.log(things);
-    setThings(things);
-  }, [theTasks]);
 
   return (
     <div className="background">
@@ -113,7 +90,7 @@ const Taskpage = () => {
             Add Task
           </button>
         </div>
-        {things.map((ele) => (
+        {state.tasks.map((ele) => (
           <div key={ele.taskName} className="task-details">
             <p>{ele.taskName}</p>
             <div className="task-buttons">
