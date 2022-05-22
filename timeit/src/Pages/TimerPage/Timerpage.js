@@ -45,8 +45,8 @@ export const Timerpage = () => {
   const stopTimer = () => {
     setIsActive(false);
     setTotalSeconds(1500);
-    setSecond("00");
     setMinute("25");
+    setSecond("00");
   };
 
   return (
@@ -54,6 +54,7 @@ export const Timerpage = () => {
       <nav className="navbar">
         <p className="nav-brand">Time It.</p>
       </nav>
+
       <section className="main-content">
         <div className="timer">
           <div className="timeCount">

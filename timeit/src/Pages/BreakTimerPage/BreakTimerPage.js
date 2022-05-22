@@ -26,11 +26,11 @@ const BreakTimerPage = () => {
 
         setSecond(computedSecond);
         setMinute(computedMinute);
-        // document.title = `${minute}:${second}`;
+
         setTotalSeconds((totalSeconds) => totalSeconds - 1);
         if (totalSeconds === 0) {
           stopTimer();
-          navigate("/Timerpage");
+          navigate("/Taskpage");
         }
       }, 1000);
     }
@@ -44,8 +44,8 @@ const BreakTimerPage = () => {
   const stopTimer = () => {
     setIsActive(false);
     setTotalSeconds(300);
-    setSecond("00");
     setMinute("05");
+    setSecond("00");
   };
 
   return (

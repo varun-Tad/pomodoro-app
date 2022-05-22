@@ -1,5 +1,6 @@
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
+
 import "./Taskpage.css";
 
 const reducerFn = (state, action) => {
@@ -7,7 +8,12 @@ const reducerFn = (state, action) => {
     case "addToTask": {
       const items = [
         ...state.tasks,
-        { taskName: action.value, taskDesc: action.desc },
+        {
+          taskName: action.value,
+          taskDesc: action.desc,
+          checkTask: false,
+          dateCreated: new Date(),
+        },
       ];
       localStorage.setItem("theItems", JSON.stringify(items));
       return {
@@ -33,6 +39,21 @@ const reducerFn = (state, action) => {
           : obj
       );
       const items = [...newTask];
+      localStorage.setItem("theItems", JSON.stringify(items));
+      return {
+        ...state,
+        tasks: [...items],
+      };
+    }
+    case "checkTask": {
+      const chcTask = state.tasks.map((obj) => {
+        console.log("checked");
+        console.log("obj.taskname", obj.taskName);
+        return obj.taskName === action.value.taskName
+          ? { ...obj, checkTask: !action.value.checkTask }
+          : obj;
+      });
+      const items = [...chcTask];
       localStorage.setItem("theItems", JSON.stringify(items));
       return {
         ...state,
@@ -81,7 +102,9 @@ const Taskpage = () => {
       </nav>
       <h1 className="greeting-text">Welcome {userName}! Let's get to work !</h1>
       <h2 className="greeting-text">
-        You have {state.tasks.length} tasks to work on. Good luck!
+        {state.tasks.length === 0
+          ? "You have no tasks to work on"
+          : `You have ${state.tasks.length} tasks to work on. Good luck! `}
       </h2>
       <section className="task-section">
         <div className="task-section-header">
@@ -92,14 +115,34 @@ const Taskpage = () => {
         </div>
         {state.tasks.map((ele) => (
           <div key={ele.taskName} className="task-details">
-            <p>{ele.taskName}</p>
+            <div className="check">
+              <input
+                className="check-box"
+                checked={ele.checkTask}
+                type="checkbox"
+                onChange={() => dispatch({ type: "checkTask", value: ele })}
+              />
+              <p
+                style={{
+                  textDecoration: ele.checkTask ? "line-through" : "none",
+                }}
+              >
+                {ele.taskName}
+              </p>
+            </div>
+
             <div className="task-buttons">
-              <button onClick={() => addTimerTask(ele)}>
+              <button
+                className="timer-btn"
+                title="Timer"
+                onClick={() => addTimerTask(ele)}
+              >
                 <Link className="timer-text" to="/Timerpage">
                   Timer
                 </Link>
               </button>
               <button
+                title="Edit"
                 disabled={isModalTwo}
                 onClick={() => {
                   TaskHandlerTwo();
@@ -112,6 +155,7 @@ const Taskpage = () => {
                 Edit
               </button>
               <button
+                title="Delete"
                 onClick={() => dispatch({ type: "DeleteTask", value: ele })}
               >
                 Delete
@@ -144,7 +188,6 @@ const Taskpage = () => {
             <button
               type="submit"
               onClick={() => {
-                // addTaskToLocal();
                 if (title.length === 0) {
                   alert("No Task Found.Enter Task");
                 } else {
@@ -163,7 +206,6 @@ const Taskpage = () => {
           </div>
         </form>
       )}
-      {/* {isModal || isModal} */}
 
       {isModalTwo && (
         <form className="form">
