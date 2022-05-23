@@ -92,6 +92,7 @@ const Taskpage = () => {
 
   const addTimerTask = (ele) => {
     localStorage.setItem("TaskToSetTimer", ele.taskName);
+
     dispatch({ type: "Timer", value: ele });
   };
 

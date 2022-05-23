@@ -27,7 +27,7 @@ export const Timerpage = () => {
 
         setSecond(computedSecond);
         setMinute(computedMinute);
-        // document.title = `${minute}:${second}`;
+
         setTotalSeconds((totalSeconds) => totalSeconds - 1);
         if (totalSeconds === 0) {
           stopTimer();
