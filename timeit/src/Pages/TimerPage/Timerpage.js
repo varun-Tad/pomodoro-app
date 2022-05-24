@@ -10,6 +10,14 @@ export const Timerpage = () => {
   const [isActive, setIsActive] = useState(false);
   const [totalSeconds, setTotalSeconds] = useState(1500);
 
+  //Can create Object like this
+  // const [TimerStatus, setTimerStatus] = useState({
+  //   minute: "25",
+  //   second: "00",
+  //   isActive: false,
+  //   totalSeconds: 1500,
+  // });
+
   useEffect(() => {
     let intervalId;
     if (isActive) {
