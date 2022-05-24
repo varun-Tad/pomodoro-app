@@ -148,6 +148,8 @@
   border-radius: 0.5rem;
   padding: 0 1rem 0.3rem 1rem;
   margin-top: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -157,6 +159,10 @@
   color: #00d4ff;
   font-size: 1.3rem;
   font-weight: 600;
+}
+
+.task-details:hover {
+  transform: scale(1.03);
 }
 
 .task-buttons {
@@ -184,4 +190,11 @@
 
 ::placeholder {
   font-family: "Varela Round", sans-serif;
+}
+
+.check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
