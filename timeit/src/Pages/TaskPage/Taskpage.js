@@ -116,7 +116,7 @@ const Taskpage = () => {
         </div>
         {state.tasks.map((ele) => (
           <div key={ele.taskName} className="task-details">
-            <div className="check">
+            <div className="checkbox-container">
               <input
                 className="check-box"
                 checked={ele.checkTask}
