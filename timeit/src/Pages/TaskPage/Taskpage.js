@@ -47,8 +47,6 @@ const reducerFn = (state, action) => {
     }
     case "checkTask": {
       const chcTask = state.tasks.map((obj) => {
-        console.log("checked");
-        console.log("obj.taskname", obj.taskName);
         return obj.taskName === action.value.taskName
           ? { ...obj, checkTask: !action.value.checkTask }
           : obj;
