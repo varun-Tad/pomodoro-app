@@ -101,7 +101,7 @@ const Taskpage = () => {
       </nav>
       <h1 className="greeting-text">Welcome {userName}! Let's get to work !</h1>
       <h2 className="greeting-text">
-        {state.tasks.length === 0
+        {state.tasks.length === 0 || state.tasks === null
           ? "You have no tasks to work on"
           : `You have ${state.tasks.length} tasks to work on. Good luck! `}
       </h2>
