@@ -1,9 +1,9 @@
-import "./App.css";
 import Homepage from "./Pages/HomePage/Homepage";
 import { Routes, Route } from "react-router-dom";
 import Taskpage from "./Pages/TaskPage/Taskpage";
 import Timerpage from "./Pages/TimerPage/Timerpage";
 import BreakTimerPage from "./Pages/BreakTimerPage/BreakTimerPage";
+import "./App.css";
 
 function App() {
   return (

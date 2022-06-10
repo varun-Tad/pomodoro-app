@@ -9,13 +9,6 @@ const BreakTimerPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [totalSeconds, setTotalSeconds] = useState(300);
 
-  // const[TimerStatus,setTimerStatus]=useState({
-  //   minute:"05",
-  //   second:"00",
-  //   isActive:false,
-  //   totalSeconds:300
-  // })
-
   useEffect(() => {
     let intervalId;
     if (isActive) {
@@ -49,10 +42,10 @@ const BreakTimerPage = () => {
   }, [isActive, totalSeconds]);
 
   const stopTimer = () => {
-    // setIsActive(false);
-    // setTotalSeconds(300);
-    // setMinute("05");
-    // setSecond("00");
+    setIsActive(false);
+    setTotalSeconds(300);
+    setMinute("05");
+    setSecond("00");
   };
 
   return (

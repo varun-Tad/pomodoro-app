@@ -7,9 +7,9 @@
 }
 
 .navbar {
-  background: #fff;
+  background: var(--white-font);
   z-index: 10;
-  height: 100px;
+  height: 10rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -17,7 +17,7 @@
 
 .nav-brand {
   font-family: "Square Peg", cursive;
-  color: #00d4ff;
+  color: var(--primary-color);
   font-size: 5rem;
   margin: 0;
   font-weight: 700;
@@ -25,14 +25,14 @@
 }
 
 .greeting-text {
-  color: #00d4ff;
+  color: var(--primary-color);
   margin-top: 3rem;
   margin-left: 1rem;
   text-align: center;
 }
 
 .task-section {
-  background-color: #dcedf7;
+  background-color: var(--light-blue);
   height: 63%;
   width: 75rem;
   margin: auto;
@@ -50,25 +50,25 @@
 
 .task-section-header .task-heading {
   font-size: 2rem;
-  color: #777;
+  color: var(--mid-grey);
 }
 
 .task-section-header button {
-  color: #00d4ff;
+  color: var(--primary-color);
   font-family: "Varela Round", sans-serif;
   font-weight: 700;
   height: 50px;
   width: 100px;
-  border: 5px solid #00d4ff;
-  background-color: white;
+  border: 5px solid var(--primary-color);
+  background-color: var(--white-font);
   border-radius: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 9px var(--dark-grey);
 }
 
 .task-section-header button:active {
   transform: translateY(4px);
-  box-shadow: 0 5px #666;
+  box-shadow: 0 5px var(--light-grey);
 }
 
 .form {
@@ -80,7 +80,7 @@
   left: 36rem;
   width: 18rem;
   z-index: 20;
-  background-color: #fff;
+  background-color: var(--white-font);
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
@@ -103,40 +103,40 @@
 .modal-input {
   outline: none;
   height: 1.5rem;
-  background-color: #dcedf7;
+  background-color: var(--light-blue);
   border: none;
   border-radius: 0.5rem;
 }
 
 .modal-input:focus {
-  border: 2px solid #00d4ff;
+  border: 2px solid var(--primary-color);
 }
 
 .modal-textArea {
   outline: none;
-  background-color: #dcedf7;
+  background-color: var(--light-blue);
   border: none;
   border-radius: 0.5rem;
 }
 
 .modal-textArea:focus {
-  border: 2px solid #00d4ff;
+  border: 2px solid var(--primary-color);
 }
 
 .form .buttons button {
-  color: #00d4ff;
+  color: var(--primary-color);
   font-family: "Varela Round", sans-serif;
   font-weight: 700;
-  border: 5px solid #00d4ff;
-  background-color: white;
+  border: 5px solid var(--primary-color);
+  background-color: var(--white-font);
   border-radius: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 9px var(--dark-grey);
 }
 
 .form .buttons button:active {
   transform: translateY(4px);
-  box-shadow: 0 5px #666;
+  box-shadow: 0 5px var(--light-grey);
 }
 
 .task-details {
@@ -144,7 +144,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 1rem 0 1rem;
-  background-color: #fff;
+  background-color: var(--white-font);
   border-radius: 0.5rem;
   padding: 0 1rem 0.3rem 1rem;
   margin-top: 1rem;
@@ -165,19 +165,19 @@
 }
 
 .task-buttons button {
-  color: #00d4ff;
+  color: var(--primary-color);
   font-family: "Varela Round", sans-serif;
   font-weight: 700;
-  border: 5px solid #00d4ff;
-  background-color: white;
+  border: 5px solid var(--primary-color);
+  background-color: var(--white-font);
   border-radius: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 9px var(--dark-grey);
 }
 
 .timer-text {
   text-decoration: none;
-  color: #00d4ff;
+  color: var(--primary-color);
   font-family: "Varela Round", sans-serif;
   font-weight: 700;
 }
@@ -187,7 +187,7 @@
 }
 
 .checkbox-container p {
-  color: #00d4ff;
+  color: var(--primary-color);
   font-size: 1.3rem;
   font-weight: 600;
   cursor: pointer;
