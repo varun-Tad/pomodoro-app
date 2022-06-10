@@ -68,7 +68,7 @@
 }
 
 .hero-btn-text {
-  color: (--primary-color);
+  color: var(--primary-color);
   font-family: "Varela Round", sans-serif;
   font-weight: 700;
   text-decoration: none;
