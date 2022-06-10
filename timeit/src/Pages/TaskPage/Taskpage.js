@@ -6,14 +6,15 @@ import "./Taskpage.css";
 const reducerFn = (state, action) => {
   switch (action.type) {
     case "addToTask": {
+      const leArr = [...state.tasks];
       const items = [
-        ...state.tasks,
         {
           taskName: action.value,
           taskDesc: action.desc,
           checkTask: false,
           dateCreated: new Date(),
         },
+        ...leArr,
       ];
       localStorage.setItem("theItems", JSON.stringify(items));
       return {
@@ -94,6 +95,8 @@ const Taskpage = () => {
     dispatch({ type: "Timer", value: ele });
   };
 
+  let theLength = state.tasks?.length;
+  let actualLength = state?.tasks?.length || 0;
   return (
     <div className="background">
       <nav className="navbar">
@@ -101,9 +104,10 @@ const Taskpage = () => {
       </nav>
       <h1 className="greeting-text">Welcome {userName}! Let's get to work !</h1>
       <h2 className="greeting-text">
-        {state.tasks.length === 0 || state.tasks === null
+        {/* {state?.tasks?.length === 0 || state.tasks === null */}
+        {actualLength === 0
           ? "You have no tasks to work on"
-          : `You have ${state.tasks.length} tasks to work on. Good luck! `}
+          : `You have ${state?.tasks?.length} tasks to work on. Good luck! `}
       </h2>
       <section className="task-section">
         <div className="task-section-header">
@@ -112,7 +116,7 @@ const Taskpage = () => {
             Add Task
           </button>
         </div>
-        {state.tasks.map((ele) => (
+        {state?.tasks?.map((ele) => (
           <div key={ele.taskName} className="task-details">
             <div className="checkbox-container">
               <input
