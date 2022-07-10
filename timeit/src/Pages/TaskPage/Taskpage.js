@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Taskpage.css";
@@ -94,6 +94,10 @@ const Taskpage = () => {
 
     dispatch({ type: "Timer", value: ele });
   };
+
+  useEffect(() => {
+    localStorage.setItem("theItems", JSON.stringify([]));
+  }, []);
 
   let theLength = state.tasks?.length;
   let actualLength = state?.tasks?.length || 0;
