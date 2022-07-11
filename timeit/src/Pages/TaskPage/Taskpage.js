@@ -16,7 +16,7 @@ const reducerFn = (state, action) => {
         },
         ...leArr,
       ];
-      localStorage.setItem("theItems", JSON.stringify(items));
+
       return {
         ...state,
         tasks: [...items],
@@ -40,7 +40,7 @@ const reducerFn = (state, action) => {
           : obj
       );
       const items = [...newTask];
-      localStorage.setItem("theItems", JSON.stringify(items));
+
       return {
         ...state,
         tasks: [...items],
@@ -53,7 +53,7 @@ const reducerFn = (state, action) => {
           : obj;
       });
       const items = [...chcTask];
-      localStorage.setItem("theItems", JSON.stringify(items));
+
       return {
         ...state,
         tasks: [...items],
