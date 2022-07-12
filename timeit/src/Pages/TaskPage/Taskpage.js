@@ -6,7 +6,7 @@ import "./Taskpage.css";
 const reducerFn = (state, action) => {
   switch (action.type) {
     case "addToTask": {
-      const leArr = [...state.tasks];
+      // const leArr = [state.tasks];
       const items = [
         {
           taskName: action.value,
@@ -14,7 +14,8 @@ const reducerFn = (state, action) => {
           checkTask: false,
           dateCreated: new Date(),
         },
-        ...leArr,
+        // ...leArr,
+        ...state.tasks,
       ];
 
       return {
