@@ -11,8 +11,8 @@ const reducerFn = (state, action) => {
         {
           taskName: action.value,
           taskDesc: action.desc,
-          checkTask: false,
-          dateCreated: new Date(),
+          // checkTask: false,
+          // dateCreated: new Date(),
         },
         // ...leArr,
         ...state.tasks,
@@ -263,3 +263,4 @@ const Taskpage = () => {
 };
 
 export default Taskpage;
+export { reducerFn };
