@@ -6,15 +6,11 @@ import "./Taskpage.css";
 const reducerFn = (state, action) => {
   switch (action.type) {
     case "addToTask": {
-      // const leArr = [state.tasks];
       const items = [
         {
           taskName: action.value,
           taskDesc: action.desc,
-          // checkTask: false,
-          // dateCreated: new Date(),
         },
-        // ...leArr,
         ...state.tasks,
       ];
 
@@ -100,7 +96,6 @@ const Taskpage = () => {
     localStorage.setItem("theItems", JSON.stringify([]));
   }, []);
 
-  let theLength = state.tasks?.length;
   let actualLength = state?.tasks?.length || 0;
   return (
     <div className="background">
@@ -109,7 +104,6 @@ const Taskpage = () => {
       </nav>
       <h1 className="greeting-text">Welcome {userName}! Let's get to work !</h1>
       <h2 className="greeting-text">
-        {/* {state?.tasks?.length === 0 || state.tasks === null */}
         {actualLength === 0
           ? "You have no tasks to work on"
           : `You have ${state?.tasks?.length} tasks to work on. Good luck! `}
