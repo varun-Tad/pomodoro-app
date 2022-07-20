@@ -232,7 +232,6 @@ const Taskpage = () => {
             <button
               type="submit"
               onClick={() => {
-                console.log(title);
                 if (title.length === 0) {
                   alert("No Task Found.Enter Task");
                 } else {
