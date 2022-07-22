@@ -1,71 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
+import { reducerFn } from "./TaskPagereducer";
 import { Link } from "react-router-dom";
-
 import "./Taskpage.css";
-
-const reducerFn = (state, action) => {
-  switch (action.type) {
-    case "addToTask": {
-      const items = [
-        {
-          taskName: action.value,
-          taskDesc: action.desc,
-        },
-        ...state.tasks,
-      ];
-
-      return {
-        ...state,
-        tasks: [...items],
-      };
-    }
-    case "DeleteTask": {
-      const arr = state.tasks.filter(
-        (item) => item.taskName !== action.value.taskName
-      );
-      const items = [...arr];
-      localStorage.setItem("theItems", JSON.stringify(items));
-      return {
-        ...state,
-        tasks: [...items],
-      };
-    }
-    case "editTask": {
-      const newTask = state.tasks.map((obj) =>
-        obj.taskName === action.editTaskValue.taskName
-          ? { ...obj, taskName: action.value, taskDesc: action.desc }
-          : obj
-      );
-      const items = [...newTask];
-
-      return {
-        ...state,
-        tasks: [...items],
-      };
-    }
-    case "checkTask": {
-      const chcTask = state.tasks.map((obj) => {
-        return obj.taskName === action.value.taskName
-          ? { ...obj, checkTask: !action.value.checkTask }
-          : obj;
-      });
-      const items = [...chcTask];
-
-      return {
-        ...state,
-        tasks: [...items],
-      };
-    }
-    case "Timer": {
-      return {
-        ...state,
-        tasks: [...state.tasks],
-      };
-    }
-    default:
-      return state;
-  }
-};
 
 const Taskpage = () => {
   const [isModalOne, setisModalOne] = useState(false);
@@ -256,4 +192,4 @@ const Taskpage = () => {
 };
 
 export default Taskpage;
-export { reducerFn };
+// export { reducerFn };
