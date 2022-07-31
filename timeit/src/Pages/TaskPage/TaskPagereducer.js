@@ -1,17 +1,20 @@
 export const reducerFn = (state, action) => {
   switch (action.type) {
     case "addToTask": {
-      const items = [
-        {
-          taskName: action.value,
-          taskDesc: action.desc,
-        },
-        ...state.tasks,
-      ];
+      // const items = [
+      //   {
+      //     taskName: action.value,
+      //     taskDesc: action.desc,
+      //   },
+      //   ...state.tasks,
+      // ];
 
       return {
         ...state,
-        tasks: [...items],
+        tasks: [
+          ...state.tasks,
+          { taskName: action.value, taskDesc: action.desc },
+        ],
       };
     }
     case "DeleteTask": {
