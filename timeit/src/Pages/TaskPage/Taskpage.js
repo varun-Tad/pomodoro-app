@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { reducerFn } from "./TaskPagereducer";
 import { Link } from "react-router-dom";
 import "./Taskpage.css";
@@ -11,7 +11,6 @@ const Taskpage = () => {
   const [taskToEdit, setTaskToEdit] = useState({});
 
   const [state, dispatch] = useReducer(reducerFn, {
-    // tasks: JSON.parse(localStorage.getItem("theItems")),
     tasks: [],
   });
   const TaskHandlerOne = () => {
@@ -28,10 +27,6 @@ const Taskpage = () => {
 
     dispatch({ type: "Timer", value: ele });
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem("theItems", JSON.stringify([]));
-  // }, []);
 
   let actualLength = state?.tasks?.length || 0;
   return (
