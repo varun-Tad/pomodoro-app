@@ -9,11 +9,6 @@ const Taskpage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [taskToEdit, setTaskToEdit] = useState({});
-
-  // const [state, dispatch] = useReducer(reducerFn, {
-  //   tasks: [],
-  // });
-
   const { state, dispatch } = useTask();
 
   const TaskHandlerOne = () => {
