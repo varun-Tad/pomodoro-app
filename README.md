@@ -3,7 +3,7 @@
 
 This is a pomodoro app which can help you keep track of your daily tasks and also help you time your tasks.
 
-Live link - [Pomodoro](https://pomoappdoro.netlify.app/)
+Live link - [Pomodoro](https://pomo-timeit.netlify.app/)
 
 
 ## Features
