@@ -1,8 +1,7 @@
-import { useReducer, useState } from "react";
-import { reducerFn } from "./TaskPagereducer";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Taskpage.css";
 import { useTask } from "../../Contexts/task-context";
+import "./Taskpage.css";
 
 const Taskpage = () => {
   const [isModalOne, setisModalOne] = useState(false);
