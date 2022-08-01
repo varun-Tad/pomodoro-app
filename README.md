@@ -11,7 +11,6 @@ Live link - [Pomodoro](https://pomoappdoro.netlify.app/)
 + Add a Task
 + Delete/Edit Task
 + Start/Pause and Reset Clock
-+ Data Persistence
 + Page title in sync with Pomodoro time
 
 
