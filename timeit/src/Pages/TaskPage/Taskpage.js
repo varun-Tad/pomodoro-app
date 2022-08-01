@@ -2,6 +2,7 @@ import { useReducer, useState } from "react";
 import { reducerFn } from "./TaskPagereducer";
 import { Link } from "react-router-dom";
 import "./Taskpage.css";
+import { useTask } from "../../Contexts/task-context";
 
 const Taskpage = () => {
   const [isModalOne, setisModalOne] = useState(false);
@@ -10,9 +11,12 @@ const Taskpage = () => {
   const [description, setDescription] = useState("");
   const [taskToEdit, setTaskToEdit] = useState({});
 
-  const [state, dispatch] = useReducer(reducerFn, {
-    tasks: [],
-  });
+  // const [state, dispatch] = useReducer(reducerFn, {
+  //   tasks: [],
+  // });
+
+  const { state, dispatch } = useTask();
+
   const TaskHandlerOne = () => {
     setisModalOne(!isModalOne);
   };

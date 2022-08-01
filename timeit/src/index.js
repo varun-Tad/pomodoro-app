@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { TaskProvider } from "./Contexts/task-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <TaskProvider>
+        <App />
+      </TaskProvider>
     </Router>
   </React.StrictMode>
 );
