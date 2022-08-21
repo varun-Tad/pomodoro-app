@@ -33,12 +33,13 @@
 
 .task-section {
   background-color: var(--light-blue);
-  height: 63%;
+  padding-bottom: 1rem;
   width: 75rem;
   margin: auto;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  position: relative; /*here*/
 }
 
 .task-section-header {
@@ -71,15 +72,18 @@
   box-shadow: 0 5px var(--light-grey);
 }
 
+.form-container {
+  z-index: 20;
+  position: absolute;
+  left: 36rem;
+  bottom: 5rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  position: relative;
-  top: -28rem;
-  left: 36rem;
   width: 18rem;
-  z-index: 20;
   background-color: var(--white-font);
   padding: 1rem;
   border-radius: 0.5rem;
