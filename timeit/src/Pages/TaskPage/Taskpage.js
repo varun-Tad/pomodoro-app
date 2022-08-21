@@ -10,14 +10,17 @@ const Taskpage = () => {
   const [description, setDescription] = useState("");
   const [taskToEdit, setTaskToEdit] = useState({});
   const { state, dispatch } = useTask();
+  const [backdropAppear, setBackdropAppear] = useState(false);
 
   const TaskHandlerOne = () => {
     setisModalOne(!isModalOne);
+    setBackdropAppear(!backdropAppear);
   };
   const userName = localStorage.getItem("user-name");
 
   const TaskHandlerTwo = () => {
     setisModalTwo(!isModalTwo);
+    setBackdropAppear(!backdropAppear);
   };
 
   const addTimerTask = (ele) => {
@@ -29,6 +32,7 @@ const Taskpage = () => {
   let actualLength = state?.tasks?.length || 0;
   return (
     <div className="background">
+      {backdropAppear && <div className="backdrop"></div>}
       <nav className="navbar">
         <p className="nav-brand">Time It.</p>
       </nav>
